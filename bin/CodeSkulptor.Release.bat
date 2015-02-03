@@ -3,4 +3,4 @@
 :: Dated: 24 Janvary, 2015
 
 @echo off
-RunBrowser.bat "\html\index.html"
+RunBrowser.bat "%CD%\html\index.html"
