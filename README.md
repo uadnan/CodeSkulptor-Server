@@ -8,10 +8,10 @@ CodeSkulptor Server is able to detect Chrome and Firefox installation on your PC
 ## Compiling for Windows
 CodeSkulptor Server is written in [Google Go][2]. To compile CodeSkulptor you must have Go Compilor installed on your PC. If you have already installed then opens `Comamnd Prompt` on windows and execute `build.bat`.
 
-`build.bat` will try to execute Go Compilor and if build was sucessfull executable will be saved to `bin\CodeSkulptorServer.exe`.
+`build.bat` will try to execute Go Compilor and if build was sucessfull executable will be saved as `CodeSkulptorServer.exe` inside `bin` directory.
 
 ## Compiling for Other OS
-To compile CodeSkulptor Server for other OS you have to replace some OS specific functions in [src/codeskulptor/listener.go][3].
+To compile CodeSkulptor Server for other OS you have to replace OS specific function i.e `getExePath` that lives inside [src/codeskulptor/listener.go][3].
 
 ## Running Server
 To run CodeSkulptor Server exeutes `bin\CodeSkulptorServer.exe`. This will also try to open `localhost:2846` within prefered web browser. CodeSkulptor Server listens on port `2846`. If browser doesn't opens automatically try to open `localhost:2846` inside Google Chrome, Mozilla Firefox or Safari. Sorry Internet Explorer not full supports CodeSkulptor.
