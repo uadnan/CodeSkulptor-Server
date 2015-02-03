@@ -1,0 +1,4 @@
+This Directory will store saved python script
+
+CAUTION:
+Don't Delete this directory

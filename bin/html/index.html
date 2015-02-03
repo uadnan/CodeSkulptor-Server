@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>CodeSkulptor Offline</title>
+    <link href="favicon.ico" rel="shortcut icon" />
+    <link rel="stylesheet" type="text/css" href="codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="jqui/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" type="text/css" href="codeskulptor.css" />
+    <link rel="stylesheet" type="text/css" href="dialog.css" />
+    <script type="text/javascript" src="js/codemirror-compressed.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flot.axislabels.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flot.orderbars.min.js"></script>
+    <script type="text/javascript" src="js/numeric-1.2.6.min.js"></script>
+    <script type="text/javascript" src="skulpt/skulpt.min.js"></script>
+    <script type="text/javascript" src="skulpt/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="js/codeskulptor-compressed.js"></script>
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="controls" class="topbar">
+        <div style="float:left">
+          <button type="button" id="run" class="tb-button-icon ui-state-default" accesskey="R">Run (Accesskey R)</button>
+          <button type="button" id="save" class="tb-button-icon ui-state-default" accesskey="S">Save (Accesskey S)</button>
+          <a id="dlhref" href="#"></a>
+          <button type="button" id="dl" class="tb-button-icon ui-state-default">Download</button>
+          <button type="button" id="fresh" class="tb-button-icon ui-state-default">Fresh URL</button>
+          <button type="button" id="loadlocal" class="tb-button-icon ui-state-default">Open Local<input type="file" id="localfile"></input></button>
+          <button type="button" id="reset" class="tb-button-icon ui-state-default" accesskey="X">Reset (Accesskey X)</button>
+        </div>
+        <img id="brand" src="codeskulptor.png" alt="CodeSkulptor" />
+        <div style="float:right">
+          <a id="docanchor" href="docs.html" target="_blank"></a>
+          <button type="button" id="docs" class="tb-button-text ui-state-default">Docs</button>
+        </div>
+      </div>
+      <div id="active">
+        <div id="eddiv">
+          <form action="#" method="post" enctype="multipart/form-data" id="codeform">
+            <textarea id="code" name="code"></textarea>
+          </form>
+        </div>
+        <div id="splitbar">
+          <div id="grip">
+          <img src="jqui/images/ui-icons_00246a_256x240.png" />
+          </div>
+        </div>
+        <div id="console"></div>
+      </div>
+      <div id="bottom">
+        <a href="//codeskulptor.org">CodeSkulptor</a> Offline Copy - Not for Commercial Use
+      </div>
+    </div>
+  </body>
+</html>
