@@ -23,6 +23,7 @@ import (
 	"net/http"
 	"io"
 	"io/ioutil"
+	"strconv"
 )
 
 /*
@@ -33,12 +34,12 @@ func UrlLib2Handler(w http.ResponseWriter, req *http.Request) {
 	client := &http.Client { }
 
 	url := req.FormValue("url")
-	log("[FETCH] " + url)
 
 	wReq, err := http.NewRequest(req.Method, url, nil)
 	resp, err := client.Do(wReq)
 
 	if err != nil {
+		log("[FETCH] " + url + ", Error: " + err.Error())
 		http.Error(w, err.Error(), 403)
 		return
 	}
@@ -46,6 +47,8 @@ func UrlLib2Handler(w http.ResponseWriter, req *http.Request) {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	
+	w.WriteHeader(resp.StatusCode)
 	w.Header().Set("Content-Type", resp.Header.Get("Content-Type"))
 	io.WriteString(w, string(body))
+	log("[FETCH] " + strconv.Itoa(resp.StatusCode) + " " + url)
 }

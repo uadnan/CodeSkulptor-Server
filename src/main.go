@@ -27,10 +27,12 @@ import (
 import "codeskulptor"
 
 func main() {
-    cmd := exec.Command("TITLE CodeSkulptor Server - localhost:2846")
+    cmd := exec.Command("TITLE CodeSkulptor Offline Server")
     _ = cmd.Run()
 
-    fmt.Printf("Starting CodeSkulotor Server...\n\n[WARNING] Don't Close this while using CodeSkulotor\n[INFO] Listening and Serving on localhost:2846\n")
+    fmt.Printf("CodeSkulptor Offline Server\n" +
+    	       "(c) Adnan Umer <u.adnan@outlook.com>\n" +
+    	       "For more information visit http://adnanumer.me/project/codeskulptor-local-server/\n\n")
 
     codeskulptor.OpenBrowser("http://localhost:2846/")
     codeskulptor.Listen(2846)

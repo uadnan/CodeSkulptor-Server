@@ -85,8 +85,13 @@ func storageHandler(w http.ResponseWriter, req *http.Request) {
 	// We are only going to send python scripts in response if any
 	w.Header().Set("Content-Type", "text/plain")
 
-	requestedFile := storageFolder + req.URL.Path[9:];
-	hasFile := fileExists(requestedFile)
+	requestedFile := req.URL.Path[1:]
+	file_path := storageFolder + req.URL.Path[9:];
+	if (req.Method == "POST") {
+		file_path += req.FormValue("path")
+	}
+
+	hasFile := fileExists(file_path)
 
 	switch (req.Method) {
 
@@ -100,7 +105,7 @@ func storageHandler(w http.ResponseWriter, req *http.Request) {
 
 				// NOT FOUND
 				http.NotFound(w, req)
-				log("[HEAD] 404" + requestedFile)
+				log("[HEAD] 404 " + requestedFile)
 
 			}
 			break;
@@ -109,42 +114,46 @@ func storageHandler(w http.ResponseWriter, req *http.Request) {
 			if (hasFile) {
 
 				// OK
-				http.ServeFile(w, req, requestedFile)
-				log("[GET] 200" + requestedFile)
+				http.ServeFile(w, req, file_path)
+				log("[GET] 200 " + requestedFile)
 
 			} else {
 
 				// NOT FOUND
 				http.NotFound(w, req)
-				log("[GET] 404" + requestedFile)
+				log("[GET] 404 " + requestedFile)
 			}
 			break;
 		case "POST":
 
 			file := req.FormValue("path")
 			code := req.FormValue("code")
+			requestedFile += file
 
-			if (!hasFile) {
+			if (hasFile) {
+
+				// File already exists
+				http.Error(w, "A file with specified name already exists", 403)
+				log("[POST] 403 " + requestedFile)
+				log("[ERROR] Specified File already exists");
+
+			} else {
 
 				f, err := os.Create(storageFolder + file)
 				if err != nil {
 					// Failed to ceate File
 					http.Error(w, err.Error(), 500)
 					log("[POST] 500 " + requestedFile);
-					log("\tError creating file" + err.Error());
+					log("[ERROR] Error creating file: " + err.Error());
+
 				} else {
 
+					log("[POST] 200 " + requestedFile);
 					// Write content to file
 					f.WriteString(code);
 					f.Close();
 				}
 
-			} else {
-
-				// File already exists
-				http.Error(w, "A file with specified name already exists", 403)
-				log("[POST] 403" + requestedFile)
-				log("\tSpecified File already exists");
 			}
 			break;
 	}
@@ -156,6 +165,8 @@ func Listen(port int) {
 	http.HandleFunc("/storage/", storageHandler)
 	http.HandleFunc("/fetch/", UrlLib2Handler)
 	http.Handle("/", http.FileServer(http.Dir(exePath) + "html/"))
+
+	log("[INFO] Listening and Serving on localhost:" + strconv.Itoa(port))
 	
 	if err := http.ListenAndServe(":" + strconv.Itoa(port), nil); err != nil {
 		log("[ERROR]: " + err.Error())
