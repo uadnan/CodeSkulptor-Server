@@ -22,6 +22,6 @@ To compile CodeSkulptor Server for other OS you have to replace OS specific func
 To run CodeSkulptor Server exeutes `bin\CodeSkulptorServer.exe`. This will also try to open `localhost:2846` within prefered web browser. CodeSkulptor Server listens on port `2846`. If browser doesn't opens automatically try to open `localhost:2846` inside Google Chrome, Mozilla Firefox or Safari. Sorry Internet Explorer not full supports CodeSkulptor.
 
   [0]: http://www.codeskulptor.org/
-  [1]: http://uadnan.blob.core.windows.net/public/codeskulptor-server-1.1.exe
+  [1]: https://github.com/uadnan/CodeSkulptor-Server/releases/download/v1.2/Codeskulptor.Server.v1.2.Setup.zip
   [2]: https://golang.org/
   [3]: https://github.com/uadnan/CodeSkulptor-Server/blob/master/src/codeskulptor/listener.go
