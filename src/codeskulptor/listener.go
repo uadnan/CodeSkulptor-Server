@@ -85,7 +85,7 @@ func storageHandler(w http.ResponseWriter, req *http.Request) {
 	// We are only going to send python scripts in response if any
 	w.Header().Set("Content-Type", "text/plain")
 
-	requestedFile := storageFolder + req.URL.Path[1:];
+	requestedFile := storageFolder + req.URL.Path[9:];
 	hasFile := fileExists(requestedFile)
 
 	switch (req.Method) {
@@ -154,6 +154,7 @@ func storageHandler(w http.ResponseWriter, req *http.Request) {
 func Listen(port int) {
 	
 	http.HandleFunc("/storage/", storageHandler)
+	http.HandleFunc("/fetch/", UrlLib2Handler)
 	http.Handle("/", http.FileServer(http.Dir(exePath) + "html/"))
 	
 	if err := http.ListenAndServe(":" + strconv.Itoa(port), nil); err != nil {
