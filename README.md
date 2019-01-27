@@ -1,3 +1,6 @@
+**WARNING**. *Deprecated in favour of https://github.com/uadnan/CodeSkulptor/*
+
+
 # CodeSkulptor Server
 Unofficial [CodeSkulptor][0] Offline Server
 
